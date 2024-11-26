@@ -14,3 +14,10 @@ dna='ATTTACGGATTGCTGA'
 #calling onehote function
 oneHotEncodedDna= onehote(dna)
 print(oneHotEncodedDna)
+
+def onehote_flat(sequence):
+    # map each nucelotide in the string as a number 
+    mapping = {"A": 0, "C": 1, "G": 2, "T": 3, "U": 3}
+    seq2 = [mapping[i] for i in sequence]
+    onehot_array = np.eye(4)[seq2]  
+    return onehot_array.flatten()  
