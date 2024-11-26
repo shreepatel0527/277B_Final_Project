@@ -87,7 +87,7 @@ for _, row in df.iterrows():
         "at_gc_ratio": compute_at_gc_ratio(sequence),
     }
     # Add k-mer frequencies (e.g., k=3)
-    feature_row.update(compute_kmer_frequencies(sequence, k=3))
+    feature_row.update(compute_kmer_frequencies(sequence, k=9))
     features.append(feature_row)
 
 # Convert features to DataFrame
@@ -99,6 +99,6 @@ features_df.fillna(0, inplace=True)
 print(features_df.head())
 
 # Save features to CSV for modeling
-features_df.to_csv("gene_features.csv", index=False)
+features_df.to_csv("gene_features_9mer.csv", index=False)
 
 # now, one hot encode the sequences 
