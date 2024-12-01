@@ -58,7 +58,7 @@ for root, dirs, files in os.walk(base_dir):
             regen_value = 1 if folder_name.lower() == "regen" else 0  # regen: 1, non-regen: 0
 
             # Parse file
-            gene_name = file_name.replace("axolotl_", "").replace("_.fna", "")
+            gene_name = file_name.replace("axolotl_", "").replace("zebrafish_", "").replace("_.fna", "")
             file_path = os.path.join(root, file_name)
             sequences = parse_fna(file_path)
 
@@ -87,7 +87,7 @@ for _, row in df.iterrows():
         "at_gc_ratio": compute_at_gc_ratio(sequence),
     }
     # Add k-mer frequencies (e.g., k=3)
-    feature_row.update(compute_kmer_frequencies(sequence, k=9))
+    feature_row.update(compute_kmer_frequencies(sequence, k=3))
     features.append(feature_row)
 
 # Convert features to DataFrame
@@ -98,7 +98,9 @@ features_df.fillna(0, inplace=True)
 
 print(features_df.head())
 
+features_df = features_df.join(df[['organism', 'chromosome', 'regen']])
+
 # Save features to CSV for modeling
-features_df.to_csv("gene_features_9mer.csv", index=False)
+features_df.to_csv("gene_features_3mer.csv", index=False)
 
 # now, one hot encode the sequences 
