@@ -13,4 +13,3 @@ def onehote(sequence):
 dna='ATTTACGGATTGCTGA'
 #calling onehote function
 oneHotEncodedDna= onehote(dna)
-print(oneHotEncodedDna)

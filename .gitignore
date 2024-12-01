@@ -1,0 +1,6 @@
+# Ignore specific large files
+zebrafish_cds_from_genomic.fna
+axolotl_cds_from_genomic.fna
+cds_predictions.csv
+zebrafish_cds_from_genomic.fna
+axolotl_cds_from_genomic.fna
