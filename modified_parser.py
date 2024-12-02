@@ -17,6 +17,8 @@ def one_hot_encode_organism(df, organism_col):
     df['ze'] = df[organism_col].apply(lambda x: 1 if x == 'Danio rerio' else 0)
     return df
 
+
+
 import os
 from Bio import SeqIO
 import pandas as pd
