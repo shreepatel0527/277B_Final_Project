@@ -5,8 +5,21 @@ import numpy as np
 def onehote(sequence):
     # map each nucelotide in the string as a number 
     mapping = {"A": 0, "C": 1, "G": 2, "T": 3, "U": 3}
-    seq2 = [mapping[i] for i in sequence]
-    return np.eye(4)[seq2]
+
+    one_hot_encoded = []
+
+    for nuc in sequence:
+        # Check if nucleotide is valid 
+        if nuc in mapping:
+
+            encoded = np.eye(4)[mapping[nuc]]  
+            one_hot_encoded.append(encoded) 
+        else:
+            # If nucleotide is not valid, skip it
+            print(f"Warning: Invalid nucleotide '{nuc}' encountered. Skipping.")
+            return None
+        
+    return np.array(one_hot_encoded)
 
 # usage example 
 

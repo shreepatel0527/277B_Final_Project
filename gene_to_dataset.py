@@ -9,6 +9,7 @@ from Bio import SeqIO
 import pandas as pd
 from collections import Counter
 from onehot import onehote
+import numpy as np
 
 # Directory containing the dataset
 base_dir = "./dataset"
@@ -144,14 +145,14 @@ features_df.fillna(0, inplace=True)
 
 print(features_df.head())
 
-features_df = features_df.join(df[['organism', 'chromosome', 'regen']])
+features_df = features_df.join(df[['organism', 'chromosome', 'regen', 'sequence']]) # Add ATCG sequence as feature
 
 filtered_df = filter_longest_sequences_per_species(features_df)
 
 filtered_df = filtered_df[~filtered_df['gene_name'].str.contains('.fna')]
 
 # Save features to CSV for modeling
-filtered_df.to_csv("gene_features_3mer.csv", index=False)
+filtered_df.to_csv("gene_sequences.csv", index=False)
 
 print(f"Dataframe with {len(filtered_df)} entries saved!")
 
