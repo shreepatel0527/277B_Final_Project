@@ -152,7 +152,7 @@ filtered_df = filter_longest_sequences_per_species(features_df)
 filtered_df = filtered_df[~filtered_df['gene_name'].str.contains('.fna')]
 
 # Save features to CSV for modeling
-filtered_df.to_csv("gene_sequences.csv", index=False)
+filtered_df.to_csv("gene_sequences_andkmers.csv", index=False)
 
 print(f"Dataframe with {len(filtered_df)} entries saved!")
 
