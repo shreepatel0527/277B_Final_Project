@@ -8,6 +8,10 @@ def onehote(sequence):
 
     one_hot_encoded = []
 
+    if len(sequence) > 25000:  # Adjust according to your expected sequence size
+        print(f"Skipping long sequence of length {len(sequence)}")
+        return None
+
     for nuc in sequence:
         # Check if nucleotide is valid 
         if nuc in mapping:
@@ -43,13 +47,10 @@ def one_hot_signal(sequence):
 
     return signals
 
-def process_sequences(sequences, y):
+def process_sequences(sequences, y, max_len):
     """
     Process multiple sequences to form a stack of signal matrices with padding.
     """
-    # Find the length of the longest sequence
-    max_length = max(len(seq) for seq in sequences)
-
     signal_matrices = []
     updated_y = []
 
@@ -61,7 +62,7 @@ def process_sequences(sequences, y):
             # Pad the signal matrix to the max length
             padded_signal = np.pad(
                 signal_matrix, 
-                pad_width=((0, 0), (0, max_length - signal_matrix.shape[1])), 
+                pad_width=((0, 0), (0, max_len - signal_matrix.shape[1])), 
                 mode='constant', 
                 constant_values=0
             )
