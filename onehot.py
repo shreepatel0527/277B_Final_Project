@@ -8,7 +8,7 @@ def onehote(sequence):
 
     one_hot_encoded = []
 
-    if len(sequence) > 25000:  # Adjust according to your expected sequence size
+    if len(sequence) > 26000:  # Adjust according to your expected sequence size
         print(f"Skipping long sequence of length {len(sequence)}")
         return None
 
