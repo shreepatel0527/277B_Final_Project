@@ -2,13 +2,13 @@ import numpy as np
 
 # this py file one hot encodes a string of RNA sequence and returns a (len, 4) array
 
-def onehote(sequence):
+def onehote(sequence, max_len):
     # map each nucelotide in the string as a number 
     mapping = {"A": 0, "C": 1, "G": 2, "T": 3, "U": 3}
 
     one_hot_encoded = []
 
-    if len(sequence) > 26000:  # Adjust according to your expected sequence size
+    if len(sequence) > max_len: # Adjust according to your expected sequence size
         print(f"Skipping long sequence of length {len(sequence)}")
         return None
 
@@ -79,4 +79,4 @@ def process_sequences(sequences, y, max_len):
 
 dna='ATTTACGGATTGCTGA'
 #calling onehote function
-oneHotEncodedDna= onehote(dna)
+oneHotEncodedDna= onehote(dna, 3)
